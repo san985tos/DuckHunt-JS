@@ -1,3 +1,5 @@
+const https = require("https");
+
 module.exports.pointDistance = function(point1, point2) {
   return Math.sqrt(
     (Math.pow((point1.x - point2.x), 2) + Math.pow((point1.y - point2.y), 2))
@@ -31,4 +33,18 @@ module.exports.directionOfTravel = function(pointStart, pointEnd) {
   }
 
   return direction;
+};
+
+module.exports.killRandomPod = function () {
+  https.get("/kill", res => {
+    res.setEncoding("utf8");
+    let body = "";
+    res.on("data", data => {
+      body += data;
+    });
+    res.on("end", () => {
+      body = JSON.parse(body);
+      console.log(body);
+    });
+  });
 };
