@@ -205,7 +205,7 @@ class Stage extends Container {
         Utils.killRandomPod()
         .then(response => {
           console.log("killMessage:'"+response.message+"'")
-          this.hud.podStatus = killMessage
+          this.hud.podStatus = response.message
         });
         duck.timeline.add(() => {
           this.dog.retrieve();

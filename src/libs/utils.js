@@ -48,7 +48,6 @@ module.exports.killRandomPod = function () {
       res.on("end", () => {
         try {
           const parsedData = JSON.parse(body);
-          console.log("Returning '"+parsedData+"'")
           resolve(parsedData);
         } catch (e) {
           console.log(e.message);
