@@ -206,6 +206,7 @@ class Game {
     if (this.stage && this.stage.hud) {
 
       if (!this.stage.hud.hasOwnProperty('podStatus')) {
+        console.log("Creating podStatus textbox")
         this.stage.hud.createTextBox('podStatus', {
           style: {
             fontFamily: 'Arial',
@@ -292,6 +293,7 @@ class Game {
     this.gameStatus = this.level.title;
     this.stage.preLevelAnimation().then(() => {
       this.gameStatus = '';
+      this.podStatus = '';
       this.bindInteractions();
       this.startWave();
     });
