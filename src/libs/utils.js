@@ -41,6 +41,7 @@ module.exports.killRandomPod = function () {
     let body = "";
     res.on("data", data => {
       body += data;
+      console.log("Received '"+body+"'")
     });
     res.on("end", () => {
       return JSON.parse(body);
