@@ -22,6 +22,7 @@ const DOG_POINTS = {
 const HUD_LOCATIONS = {
   SCORE: new Point(MAX_X - 10, 10),
   WAVE_STATUS: new Point(MAX_X - 10, MAX_Y - 20),
+  POD_STATUS: new Point(MAX_X / 2, MAX_Y * 0.10),
   GAME_STATUS: new Point(MAX_X / 2, MAX_Y * 0.45),
   REPLAY_BUTTON: new Point(MAX_X / 2, MAX_Y * 0.56),
   BULLET_STATUS: new Point(10, 10),
@@ -70,6 +71,10 @@ class Stage extends Container {
 
   static waveStatusBoxLocation() {
     return HUD_LOCATIONS.WAVE_STATUS;
+  }
+
+  static podStatusBoxLocation() {
+    return HUD_LOCATIONS.POD_STATUS;
   }
 
   static gameStatusBoxLocation() {
@@ -198,7 +203,7 @@ class Stage extends Container {
         duck.shot();
         let backendBody = Utils.killRandomPod();
         if (backendBody && backendBody.message) {
-          this.hud.gameStatus = backendBody.message
+          this.hud.podStatus = backendBody.message
         }
         duck.timeline.add(() => {
           this.dog.retrieve();

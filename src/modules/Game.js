@@ -189,6 +189,39 @@ class Game {
   }
 
   /**
+   * podStatus - get
+   * @returns {String}
+   */
+  get podStatus() {
+    return this.podStatusVal ? this.podStatusVal : '';
+  }
+
+  /**
+   * podStatus - set
+   * @param {String} val
+   */
+  set podStatus(val) {
+    this.podStatusVal = val;
+
+    if (this.stage && this.stage.hud) {
+
+      if (!this.stage.hud.hasOwnProperty('podStatus')) {
+        this.stage.hud.createTextBox('podStatus', {
+          style: {
+            fontFamily: 'Arial',
+            fontSize: '14px',
+            align: 'left',
+            fill: 'white'
+          },
+          location: Stage.podStatusBoxLocation()
+        });
+      }
+
+      this.stage.hud.podStatus = val;
+    }
+  }
+
+  /**
    * gameStatus - get
    * @returns {String}
    */
