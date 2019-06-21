@@ -160,7 +160,6 @@ class Duck extends Character {
       delay: 0.3,
       onStart: () => {
         this.state = 'dead';
-        Utils.killRandomPod();
       },
       onComplete: () => {
         sound.play('thud', _noop);

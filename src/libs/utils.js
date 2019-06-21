@@ -43,8 +43,7 @@ module.exports.killRandomPod = function () {
       body += data;
     });
     res.on("end", () => {
-      body = JSON.parse(body);
-      console.log(body);
+      return JSON.parse(body);
     });
   });
 };

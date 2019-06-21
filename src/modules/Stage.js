@@ -196,6 +196,10 @@ class Stage extends Container {
       if (duck.alive && Utils.pointDistance(duck.position, this.getScaledClickLocation(clickPoint)) < 60) {
         ducksShot++;
         duck.shot();
+        let backendBody = Utils.killRandomPod();
+        if (backendBody && backendBody.message) {
+          this.hud.gameStatus = backendBody.message
+        }
         duck.timeline.add(() => {
           this.dog.retrieve();
         });
