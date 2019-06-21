@@ -201,11 +201,12 @@ class Stage extends Container {
       if (duck.alive && Utils.pointDistance(duck.position, this.getScaledClickLocation(clickPoint)) < 60) {
         ducksShot++;
         duck.shot();
-        let killMessage = Utils.killRandomPod();
-        console.log("killMessage:'"+killMessage+"'")
-        if killMessage {
+
+        Utils.killRandomPod()
+        .then(response => {
+          console.log("killMessage:'"+response.message+"'")
           this.hud.podStatus = killMessage
-        }
+        });
         duck.timeline.add(() => {
           this.dog.retrieve();
         });

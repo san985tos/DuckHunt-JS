@@ -1,3 +1,5 @@
+import BPromise from 'bluebird';
+
 const https = require("https");
 
 module.exports.pointDistance = function(point1, point2) {
@@ -36,15 +38,22 @@ module.exports.directionOfTravel = function(pointStart, pointEnd) {
 };
 
 module.exports.killRandomPod = function () {
-  https.get("/kill", res => {
-    res.setEncoding("utf8");
-    let body = "";
-    res.on("data", data => {
-      body += data;
-    });
-    res.on("end", () => {
-      console.log("Returning '"+body+"'")
-      return JSON.parse(body).message;
+  return new BPromise((resolve) => {
+    https.get("/kill", res => {
+      res.setEncoding("utf8");
+      let body = "";
+      res.on("data", data => {
+        body += data;
+      });
+      res.on("end", () => {
+        try {
+          const parsedData = JSON.parse(body);
+          console.log("Returning '"+parsedData+"'")
+          resolve(parsedData);
+        } catch (e) {
+          console.log(e.message);
+        }
+      });
     });
   });
 };
