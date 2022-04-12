@@ -1,7 +1,7 @@
 import {TweenMax} from 'gsap';
 import {noop as _noop} from 'lodash/util';
 import {assign as _extend} from 'lodash/object';
-import sound from './Sound';
+// import sound from './Sound';
 import Character from './Character';
 
 
@@ -45,7 +45,7 @@ class Dog extends Character {
     this.toRetrieve = 0;
     this.anchor.set(0.5, 0);
     this.options = options;
-    this.sniffSoundId = null;
+    // this.sniffSoundId = null;
   }
 
   /**
@@ -80,11 +80,11 @@ class Dog extends Character {
         this.visible = true;
         this.parent.setChildIndex(this, this.parent.children.length - 1);
         this.state = 'sniff';
-        this.sniffSoundId = sound.play('sniff');
+        // this.sniffSoundId = sound.play('sniff');
         options.onStart();
       },
       onComplete: () => {
-        sound.stop(this.sniffSoundId);
+        // sound.stop(this.sniffSoundId);
         options.onComplete();
       }
     });
@@ -142,7 +142,7 @@ class Dog extends Character {
     }, opts);
 
     this.timeline.add(() => {
-      sound.play('barkDucks');
+      // sound.play('barkDucks');
       this.state = 'find';
       options.onStart();
     });
@@ -217,7 +217,7 @@ class Dog extends Character {
       onStart: () => {
         this.toRetrieve = 0;
         this.state = 'laugh';
-        sound.play('laugh');
+        // sound.play('laugh');
       }
     });
 

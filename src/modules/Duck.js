@@ -3,7 +3,7 @@ import {assign as _extend} from 'lodash/object';
 import {noop as _noop} from 'lodash/util';
 import Utils from '../libs/utils';
 import Character from './Character';
-import sound from './Sound';
+// import sound from './Sound';
 
 const DEATH_ANIMATION_SECONDS = 0.6;
 const RANDOM_FLIGHT_DELTA = 300;
@@ -151,7 +151,7 @@ class Duck extends Character {
     this.stopAndClearTimeline();
     this.timeline.add(() => {
       this.state = 'shot';
-      sound.play('quak', _noop);
+      // sound.play('quak', _noop);
     });
 
     this.timeline.to(this.position, DEATH_ANIMATION_SECONDS, {
@@ -162,7 +162,7 @@ class Duck extends Character {
         this.state = 'dead';
       },
       onComplete: () => {
-        sound.play('thud', _noop);
+        // sound.play('thud', _noop);
         this.visible = false;
       }
     });

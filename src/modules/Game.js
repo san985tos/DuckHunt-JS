@@ -2,7 +2,7 @@ import {loader, autoDetectRenderer} from 'pixi.js';
 import {noop as _noop} from 'lodash/util';
 import levels from '../data/levels.json';
 import Stage from './Stage';
-import sound from'./Sound';
+// import sound from'./Sound';
 
 const BLUE_SKY_COLOR = 0x64b0ff;
 const PINK_SKY_COLOR = 0xfbb4d4;
@@ -24,7 +24,7 @@ class Game {
     this.levelIndex = 0;
 
     this.waveEnding = false;
-    this.quackingSoundId = null;
+    // this.quackingSoundId = null;
     this.levels = levels.normal;
     return this;
   }
@@ -300,7 +300,7 @@ class Game {
   }
 
   startWave() {
-    this.quackingSoundId = sound.play('quacking');
+    // this.quackingSoundId = sound.play('quacking');
     this.wave += 1;
     this.waveStartTime = Date.now();
     this.bullets = this.level.bullets;
@@ -314,7 +314,7 @@ class Game {
   endWave() {
     this.waveEnding = true;
     this.bullets = 0;
-    sound.stop(this.quackingSoundId);
+    // sound.stop(this.quackingSoundId);
     if (this.stage.ducksAlive()) {
       this.ducksMissed += this.level.ducks - this.ducksShotThisWave;
       this.renderer.backgroundColor = PINK_SKY_COLOR;
@@ -376,13 +376,13 @@ class Game {
   }
 
   win() {
-    sound.play('champ');
+    // sound.play('champ');
     this.gameStatus = 'You Win!';
     this.showReplay(this.getScoreMessage());
   }
 
   loss() {
-    sound.play('loserSound');
+    // sound.play('loserSound');
     this.gameStatus = 'You Lose!';
     this.showReplay(this.getScoreMessage());
   }
@@ -429,7 +429,7 @@ class Game {
     };
 
     if (!this.stage.hud.replayButton && !this.outOfAmmo()) {
-      sound.play('gunSound');
+      // sound.play('gunSound');
       this.bullets -= 1;
       this.updateScore(this.stage.shotsFired(clickPoint));
     }
